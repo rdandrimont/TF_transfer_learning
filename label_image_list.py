@@ -100,6 +100,7 @@ if __name__ == "__main__":
   parser.add_argument("--input_layer", help="name of input layer")
   parser.add_argument("--output_layer", help="name of output layer")
   parser.add_argument("--output_dir", help="name of output dir")
+  parser.add_argument("--output_file_path", help="path of output csv")
   args = parser.parse_args()
 
   if args.graph:
@@ -122,6 +123,8 @@ if __name__ == "__main__":
     output_layer = args.output_layer
   if args.output_dir:
     output_dir = args.output_dir
+  if args.output_file_path:
+    output_file_path = args.output_file_path
 
   # pre-load list of files to cycle through
   df = pd.read_csv(image_list)
@@ -168,9 +171,10 @@ df = pd.DataFrame({'cnn_labels':cnn_labels,
                    'files':file_names})
 
 # construct path
-out_file = os.path.join(output_dir,"cnn_output_data.csv")
+#out_file = os.path.join(output_dir,"cnn_output_data.csv")
+#out_file = os.path.join(output_dir,"cnn_output_data.csv")
 
 # write data to disk
-df.to_csv(out_file, sep=',', index = False)
+df.to_csv(output_file_path, sep=',', index = False)
 
 
